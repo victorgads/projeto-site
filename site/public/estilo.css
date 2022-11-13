@@ -1,0 +1,259 @@
+/*CONTEÚDO DA PÁGINA*/
+
+/*BANNER*/
+.banner {
+  display: flex;
+  /* border:solid 1px #0863f6; */
+  align-items: center;
+  justify-content: center;
+
+}
+
+.banner2 video {
+  display: flex;
+  width: 70%;
+  /* border:solid 1px #7f08f6; */
+  justify-content: center;
+}
+
+.banner2 {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  /* border:solid 1px #c7099e; */
+  justify-content: center;
+}
+
+.banner3 {
+  display: flex;
+  text-align: center;
+  /* border:solid 1px #c7099e; */
+  justify-content: space-around;
+  color: yellow;
+  text-decoration: none;
+
+}
+.cadastroInd{
+  display: flex;
+  justify-content: center;
+margin-left: 9%;
+padding-left: 50%;
+
+}
+
+.texto1 {
+padding-top: 13%; 
+ text-align: center;
+  color: #ffffff;
+}
+
+.conteudo2 {
+  display: flex;
+  text-align: center;
+  /* border:solid 5px #c72509; */
+  flex-direction: column;
+  align-items: center;
+}
+
+.conteudo3 {
+  display: flex;
+  text-align: center;
+  /* border:solid 5px #c72509; */
+  flex-direction: column;
+  align-items: center;
+
+}
+.cadastroLogin{
+  display: flex;
+border-radius: 50%;  
+text-overflow: clip;
+justify-content: center
+  ;
+}
+
+.conteudo2 img {
+  width: 600px;
+  /* border:solid 5px #c7099e; */
+  height: 450px;
+
+}
+
+.conteudo3 img {
+  width: 600px;
+  /* border:solid 5px #c7099e; */
+  height: 450px;
+
+}
+
+.conteudo {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  /* border:solid 1px #c7099e; */
+  height: 700px;
+  flex-direction: column;
+  padding-top: 5%;
+}
+
+.banner video {
+  width: 70%;
+  display: flex;
+  /* border:solid 1px #a6028d6f; */
+  padding-top: 5%;
+}
+
+.banner .container {
+  display: flex;
+  height: 200px;
+  justify-content: space-between;
+  color: #0241a66f;
+  /* border:solid 1px #3111d36f; */
+}
+
+.banner .p {
+  display: flex;
+  /* border:solid 1px #00d0eb6f; */
+
+}
+
+.slider {
+  margin: 0 auto;
+  width: 800px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slides {
+  width: 400px;
+  height: 400px;
+  display: flex;
+}
+
+.slides input {
+  display: none;
+}
+
+.slides {
+  width: 25%;
+  position: relative;
+}
+
+.slides img {
+  width: 800px;
+}
+
+.manual-navegation {
+  position: absolute;
+  width: 800px;
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+}
+
+.manual-btn {
+  border: 2px solid white;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+  border: solid 1px #ffffff;
+
+}
+
+.manual-btn:not(:last-child) {
+  margin-right: 40px;
+}
+
+.manual-btn:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+#radio1:checked~.slideFirts {
+  margin-left: 0;
+  border: solid 1px #13d52d;
+
+}
+
+#radio2:checked~.slideFirts {
+  margin-left: -401%;
+  border: solid 1px #13d52d;
+}
+
+#radio3:checked~.slideFirts {
+  margin-left: -801%;
+  border: solid 1px #13d52d;
+}
+
+#radio4:checked~.slideFirts {
+  margin-left: -1201%;
+  border: solid 1px #13d52d;
+}
+
+.navigation-auto div {
+  /* border: 2px solid rgb(181, 25, 25); */
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.navigation-auto {
+  position: absolute;
+  width: 800px;
+  margin-top: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation-auto div:not(:last-child) {
+  margin-right: 40px;
+}
+
+/*SOCIAL*/
+.social {
+  display: flex;
+  align-items: center;
+  /* border:solid 1px #d5bb13; */
+  justify-items: center;
+}
+
+.social .caixas {
+  display: flex;
+  /* border:solid 1px #02ff5f; */
+  justify-content: space-around;
+  width: 100%;
+  height: 400px;
+  align-items: center;
+  background-image: url(./assets/img/museuDeArte1.jpg);
+}
+
+.caixa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  /* border:solid 1px #9002a66f;  */
+}
+
+.caixa h4 {
+  color: rgb(255, 221, 0);
+  /* border:solid 5px #00ffe1; */
+  display: flex;
+  align-items: center;
+
+}
+
+.caixa img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  /* border:solid 1px #fd02cf; */
+
+}
+
+.caixas {
+  display: flex;
+  /* border:solid 1px #28fd02; */
+  justify-content: space-around;
+}
