@@ -1,68 +1,26 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function lugaresFavoritos() {
 
-    instrucaoSql = ''
+    instrucaoSql = `select count(lugarPreferido) as marcoZero,
+    (select count(lugarPreferido) as caisDoSertao from lugares where lugarPreferido = "caisDoSertao") as caisDoSertao ,
+    (select count(lugarPreferido) as sitioTrindade from lugares where lugarPreferido = "sitioTrindade") as sitioTrindade,
+    (select count(lugarPreferido) as coroaDoAviao from lugares where lugarPreferido = "coroaDoAviao") as coroaDoAviao,
+    (select count(lugarPreferido) as capelaDourada from lugares where lugarPreferido = "capelaDourada") as capelaDourada,
+    (select count(lugarPreferido) as museuRecife from lugares where lugarPreferido = "museuDoRecife") as museuDoRecife,
+    (select count(lugarPreferido) as praiaBoaViagem from lugares where lugarPreferido = "praiaBoaViagem") as praiaBoaViagem,
+    (select count(lugarPreferido) as passeioCatamara from lugares where lugarPreferido = "passeioCatamara") as passeioCatamara,
+    (select count(lugarPreferido) as centroHistorico from lugares where lugarPreferido = "centroHistorico") as centroHistorico,
+    (select count(lugarPreferido) as piscinasNatuarais from lugares where lugarPreferido = "centroHistorico") as centroHistorico
+     from lugares where lugarPreferido = "marcoZero";`
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        FORMAT(momento, 'HH:mm:ss') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from medida
-                    where fk_aquario = ${idAquario}
-                    order by id desc limit ${limite_linhas}`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
+
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-function buscarMedidasEmTempoReal(idAquario) {
-
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc`;
-
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc limit 1`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    lugaresFavoritos,
+  
 }

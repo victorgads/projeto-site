@@ -6,25 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recife</title>
-  <link rel="stylesheet" href="cadastro.css" />
-  <link rel="stylesheet" href="esti.css">
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link rel="stylesheet" href="./css/estilo-gerais.css">
   <link rel="stylesheet" href="./js/funcoes.js">
+  <script src="./js/validacoes.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="icon" href="./assets/img/icone6.jpg.png">
+
 </head>
 
 <body>
   <!--HEADER-->
   <header>
     <div class="container">
-      <img src="./assets/img/bandeira.jpg" alt="" width="8%">
+      <img src="./assets/img/icone6.jpg.png" alt="" width="5%">
       <div class="navegacao">
         <ul>
-          <li><a href="inicio.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="cadastro.html">Cadastro</a></li>
           <li><a href="login.html">Login</a></li>
           <style type="text/css">
             a:link {
               color: #3166b5;
               text-decoration: none;
+
             }
 
             a:visited {
@@ -49,43 +54,49 @@
   </header>
   <!--CONTEÚDO DA PÁGINA-->
   <main>
-    <section class="banner">
-      <div class="container">
-        <div class="caixa-formulario">
-          <h2>Bem-Vindo !</h2>
-          <div class="campo">
-            <label for="nome">Nome</label>
-            <input type="Nome" name="Nome" id="nome" placeholder="Nome" />
-          </div>
-          <div class="campo">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="email@email.com" />
-          </div>
-          <div class="campo">
-            <label for="senha">Senha</label>
-            <input type="password" name="senha" id="senha" placeholder="*******" />
-          </div>
-          <div class="campo">
-            <label for="senhaConfirmar">Confirmação da Senha</label>
-            <input type="password" name="senha" id="senhaConfirmar" placeholder="*******" />
-          </div>
-          <button>Enviar</button>
+    <div class="container">
+      <div class="caixa-formulario">
+        <h2>Bem-Vindo !</h2>
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input type="nome" name="nome" id="nome" placeholder="nome" />
         </div>
-        <div class="banner imgFundo">
-          <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-              <span id="mensagem_erro"></span>
-            </div>
-          </div>
-          <div id="div_aguardar" class="divAguardar">
-            <img src="./assets/img/fita.webp" id="loading-gif">
-          </div>
+        <div class="campo">
+          <label for="email">Email</label>
+          <input onkeyup="validarEmail()" type="email" name="email" id="email" placeholder="email@email.com" />
+          <span id="emailSpan"></span>
 
-          <div id="div_erros_login">
-          </div>
         </div>
-    </section>
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <input onkeyup="validarSenha()" type="password" name="senha" id="senha" placeholder="*******" />
+          <span id="senhaSpan"></span>
+        </div>
+        
+        <div class="campo">
+          <label for="senhaConfirmar">Confirmação da Senha</label>
+          <input onkeyup="confirmarSenha()" type="password" id="confirmacaoSenha" placeholder="*******" />
+          <span id="confirmarSenhaSpan"></span>
+          <br>
+          <span id="validarCampos"></span>
+        </div>
+      
+
+        <button onclick="cadastrar()">Enviar</button>
+      </div>
+
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+      <div id="div_aguardar" class="divAguardar">
+      </div>
+      <div id="div_erros_login">
+      </div>
+    </div>
   </main>
+  <br>
   <!--RODAPÉ/FOOTER-->
   <footer>
     <div class="container">
@@ -97,20 +108,29 @@
 </html>
 <script>
   function cadastrar() {
-    aguardar();
+    // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome.value;
     var emailVar = email.value;
     var senhaVar = senha.value;
-    var senhaConfirmarVar = senhaConfirmar.value;
-    
-    if (nomeVar == "" || emailVar == "" || senhaVar == "" || senhaConfirmarVar == "") {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+    var senhaConfirmarVar = confirmacaoSenha.value;
 
-      finalizarAguardar();
+    if (nomeVar == "" || emailVar == "" || senhaVar == "" || senhaConfirmarVar == "") {
+
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
+
+
+
+
+
       return false;
     }
     else {
@@ -129,29 +149,33 @@
         nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar
-       
+
       })
     }).then(function (resposta) {
 
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
-        cardErro.style.display = "block";
-
-        mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
         setTimeout(() => {
           window.location = "login.html";
         }, "2000")
 
         limparFormulario();
-        finalizarAguardar();
+        // finalizarAguardar();
       } else {
         throw ("Houve um erro ao tentar realizar o cadastro!");
       }
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
-      finalizarAguardar();
+      // finalizarAguardar();
     });
 
     return false;

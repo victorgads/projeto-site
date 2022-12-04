@@ -6,48 +6,55 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recife</title>
-  <link rel="stylesheet" href="estilo-gerais.css" />
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="./css/estilo-gerais.css" />
+  <link rel="stylesheet" href="./css/login.css" />
   <link rel="stylesheet" href="./js/funcoes.js">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="icon" href="./assets/img/icone6.jpg.png">
+
 
 </head>
+
 <body>
   <!--HEADER-->
   <header>
     <div class="container">
-      <img src="./assets/img/bandeira.jpg" alt="" width="8%">
+      <img src="./assets/img/icone6.jpg.png" alt="" width="5%">
       <div class="titulo">
       </div>
 
       <div class="navegacao">
         <ul>
-          <li><a href="inicio.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <!-- <li><a href="login.html">Pontos Turísticos</a></li>
           <li><a href="login.html">Praias</a></li>
           <div class="cadastroLogin"> -->
           <li><a href="cadastro.html">Cadastro</a></li>
-          <li><a href="login.html">Login</a></li>
-          </div>
-          <style type="text/css">
-            a:link {
-              color:#3166b5;
-              text-decoration:none;
-            }
-            a:visited {
-              color:#3166b5;
-              text-decoration:none;
-            }
-            a:hover {
-              color:#ffffff;
-              text-decoration:none;
-            }
-            a:active {
-              color:#ffffff;
-              text-decoration:underline;
-            }
-            </style>
-        </ul>
+          <li><a href="index.html">Login</a></li>
       </div>
+      <style type="text/css">
+        a:link {
+          color: #3166b5;
+          text-decoration: none;
+        }
+
+        a:visited {
+          color: #3166b5;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        a:active {
+          color: #ffffff;
+          text-decoration: underline;
+        }
+      </style>
+      </ul>
+    </div>
     </div>
   </header>
   <!--CONTEÚDO DA PÁGINA-->
@@ -65,21 +72,19 @@
             <label for="senha">Senha</label>
             <input type="password" name="senha" id="senha" placeholder="*******" />
           </div>
- <button>Enviar</button>
+          <button onclick="entrar()">Enviar</button>
         </div>
         <div class="banner imgFundo">
           <div class="alerta_erro">
-              <div class="card_erro" id="cardErro">
-                  <span id="mensagem_erro"></span>
-              </div>
+            <div class="card_erro" id="cardErro">
+              <span id="mensagem_erro"></span>
+            </div>
           </div>
-   <div id="div_aguardar" class="divAguardar">
-                  <img src="./assets/img/fita.webp" id="loading-gif" >
-              </div>
 
-              <div id="div_erros_login">
+
+          <div id="div_erros_login">
           </div>
-      </div>
+        </div>
     </section>
   </main>
   <!--RODAPÉ/FOOTER-->
@@ -89,74 +94,79 @@
     </div>
   </footer>
 </body>
+
 </html>
 <script>
   function entrar() {
-    aguardar();
+    // aguardar();
 
-    var emailVar = Email.value;
-    var senhaVar = Senha.value;
+    var emailVar = email.value;
+    var senhaVar = senha.value;
 
     if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-        finalizarAguardar();
-        return false;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Login Não Realizado, Campos Vazios!',
+      })
+
+      return false;
     }
     else {
-        setInterval(sumirMensagem, 5000)
+      setInterval(sumirMensagem, 5000)
     }
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
     fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            emailServer: emailVar,
-            senhaServer: senhaVar
-        })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
     }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
+      console.log("ESTOU NO THEN DO entrar()!")
 
-        if (resposta.ok) {
-            console.log(resposta);
+      if (resposta.ok) {
 
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Realizado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
 
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.idUsuario;
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
 
-                setTimeout(function () {
-                    window.location = "./dashboard/mural.html";
-                }, 1000); // apenas para exibir o loading
+          setTimeout(function () {
+            window.location = "conteudo.html";
+          }, 1000); // apenas para exibir o loading
 
-            });
+        });
+      } else {
+        console.log("Houve um erro ao tentar realizar o login!");
 
-        } else {
-
-            console.log("Houve um erro ao tentar realizar o login!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                finalizarAguardar(texto);
-            });
-        }
-
+        resposta.text().then(texto => {
+          console.error(texto);
+          // finalizarAguardar(texto);
+        });
+      }
     }).catch(function (erro) {
-        console.log(erro);
+      console.log(erro);
     })
-
     return false;
-}
-
-function sumirMensagem() {
+  }
+  function sumirMensagem() {
     cardErro.style.display = "none"
-}
+  }
 </script>

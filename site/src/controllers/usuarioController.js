@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -74,7 +74,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-        
+
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha)
             .then(
@@ -94,9 +94,45 @@ function cadastrar(req, res) {
     }
 }
 
+function enviar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var lugarPreferido = req.body.lugarPreferidoServer;
+    var gastronomiaPreferida = req.body.gastronomiaPreferidaServer;
+    var praiaCurtida = req.body.praiaCurtidaServer;
+
+    // Faça as validações dos valores
+    if (lugarPreferido == undefined) {
+        res.status(400).send("Seu lugar está undefined!");
+    } else if (gastronomiaPreferida == undefined) {
+        res.status(400).send("Sua gastronomia está undefined!");
+    } else if (praiaCurtida == undefined) {
+        res.status(400).send("Sua praia está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.enviar(lugarPreferido, gastronomiaPreferida, praiaCurtida)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
+    enviar,
     testar
 }

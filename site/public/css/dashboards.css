@@ -1,0 +1,46 @@
+#tituloDashboard {
+  justify-content: center;
+  display: flex;
+  font-size: 35px;
+  color: white;
+}
+
+#lugar {
+  color: rgb(180, 11, 11)
+}
+
+#praia {
+  color: rgb(18, 11, 204);
+}
+
+#gastronomia {
+  color: rgba(212, 206, 7, 0.763);
+}
+
+
+.container {
+  background-color: #e5e5e5;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+section #lugarPreferido {
+  /* padding: 10vh; */
+  width: 70%;
+  height: 40%;
+  background-color: #e5e5e5;
+  margin: 30px;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.embrulhoSection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%; 
+}
