@@ -6,17 +6,21 @@
   /* border: solid 7px #5a02fd; */
 
 }
+.janela{
+  width: 100%;
+  height: 100%;
+}
 
 
 .caixa-formulario {
   background-color: #e5e5e5;
-    padding: 50px 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-margin-top: 3%;
-border-radius: 15px;
+  padding: 50px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+  border-radius: 15px;
 
 }
 
@@ -81,12 +85,12 @@ border-radius: 15px;
 
 body {
   font-family: "Roboto", sans-serif;
-  background-image: url(https://a.cdn-hotels.com/gdcs/production65/d66/14724f91-e713-45a4-89c2-b5aa6e7a9420.jpg?impolicy=fcrop&w=800&h=533&q=medium);
-  
+  background-image: url(../assets/img/RECIFE\ VISTA\ DE\ CIMA.gif);
+  background-size: cover;
+
 }
 
-/*HEADER*/
-header {
+HEADER header {
   padding: 1%;
   background-color: #dfe2e9df;
   border-bottom: px solid #3166b5;
@@ -153,15 +157,8 @@ main .container {
 
 }
 
-footer {
-  padding: 30px 0;
-  background-color: #1452c4;
-}
-
-footer .container {
-  justify-content: center;
-}
-
-footer p {
-  color: #fff;
+.botoes {
+  display: flex;
+  justify-content: space-around;
+  width: 120%;
 }

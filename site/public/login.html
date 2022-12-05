@@ -16,48 +16,7 @@
 </head>
 
 <body>
-  <!--HEADER-->
-  <header>
-    <div class="container">
-      <img src="./assets/img/icone6.jpg.png" alt="" width="5%">
-      <div class="titulo">
-      </div>
 
-      <div class="navegacao">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <!-- <li><a href="login.html">Pontos Turísticos</a></li>
-          <li><a href="login.html">Praias</a></li>
-          <div class="cadastroLogin"> -->
-          <li><a href="cadastro.html">Cadastro</a></li>
-          <li><a href="index.html">Login</a></li>
-      </div>
-      <style type="text/css">
-        a:link {
-          color: #3166b5;
-          text-decoration: none;
-        }
-
-        a:visited {
-          color: #3166b5;
-          text-decoration: none;
-        }
-
-        a:hover {
-          color: #ffffff;
-          text-decoration: none;
-        }
-
-        a:active {
-          color: #ffffff;
-          text-decoration: underline;
-        }
-      </style>
-      </ul>
-    </div>
-    </div>
-  </header>
-  <!--CONTEÚDO DA PÁGINA-->
   <main>
     <section class="banner">
       <div class="container">
@@ -73,6 +32,18 @@
             <input type="password" name="senha" id="senha" placeholder="*******" />
           </div>
           <button onclick="entrar()">Enviar</button>
+          <div class="botoes">
+           <button onclick="home()">Inicio</button>
+             <button onclick="cadastro()">Cadastro</button>
+             <script>
+               function cadastro(){
+                 window.location = 'cadastro.html'
+               }
+               function home(){
+                 window.location = 'index.html'
+               }
+             </script>
+          </div>
         </div>
         <div class="banner imgFundo">
           <div class="alerta_erro">
@@ -87,12 +58,7 @@
         </div>
     </section>
   </main>
-  <!--RODAPÉ/FOOTER-->
-  <footer>
-    <div class="container">
-      <p>Recife - Pernabuco - Victor Gabriel - SPTech &copy; 2022</p>
-    </div>
-  </footer>
+ 
 </body>
 
 </html>
@@ -146,7 +112,7 @@
 
           sessionStorage.EMAIL_USUARIO = json.email;
           sessionStorage.NOME_USUARIO = json.nome;
-          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.ID_USUARIO = json.idUsuario;
 
           setTimeout(function () {
             window.location = "conteudo.html";

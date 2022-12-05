@@ -17,7 +17,7 @@
 
 <body>
   <!--HEADER-->
-  <header>
+  <!-- <header>
     <div class="container">
       <img src="./assets/img/icone6.jpg.png" alt="" width="5%">
       <div class="navegacao">
@@ -50,7 +50,7 @@
         </ul>
       </div>
     </div>
-  </header>
+  </header> -->
   <!--CONTEÚDO DA PÁGINA-->
   <main>
     <div class="container">
@@ -82,6 +82,19 @@
       
 
         <button onclick="cadastrar()">Enviar</button>
+     <div class="botoes">
+      <button onclick="home()">Inicio</button>
+        <button onclick="login()">Login</button>
+        <script>
+          function login(){
+            window.location = 'login.html'
+          }
+          function home(){
+            window.location = 'index.html'
+          }
+        </script>
+     </div>
+
       </div>
 
       <div class="alerta_erro">
@@ -96,12 +109,12 @@
     </div>
   </main>
   <br>
-  <!--RODAPÉ/FOOTER-->
+  <!-- RODAPÉ/FOOTER
   <footer>
     <div class="container">
       <p>Recife - Pernabuco - Victor Gabriel - SPTech &copy; 2022</p>
     </div>
-  </footer>
+  </footer> -->
 </body>
 
 </html>
