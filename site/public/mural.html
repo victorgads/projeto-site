@@ -30,6 +30,7 @@
             <div class="navegacao">
                 <ul>
                     <li><a href="conteudo.html">Lugares</a></li>
+                    <li><a href="dashboard.html">DashBoard</a></li>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="mural.html">Mural</a></li>
 
@@ -90,11 +91,10 @@
     </div>
 </body>
 
-</html>
+
 
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -136,7 +136,6 @@
         return false;
 
     }
-
     function editar(idAviso) {
         sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
         console.log("cliquei em editar - " + idAviso);
@@ -156,7 +155,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "mural.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

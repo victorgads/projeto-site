@@ -1,11 +1,11 @@
-let contador = 1;
+var contador = 1;
 
 document.getElementById("radio1").checked = true;
 
 setInterval(function () {
 nextImage();
 
-}, 4000)
+}, 3500)
 
 
 function nextImage() {
