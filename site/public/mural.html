@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/estilo-gerais.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="dashboard/dashboards.css">
+    <link rel="stylesheet" href="css/mural.css">
     <script src="../js/funcoes.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -20,36 +21,42 @@
 
 <body onload="validarSessao(), atualizarFeed()">
     <!-- <body onload="validarSessao()"> -->
-
-    <div class="janela">
-
-
-        <div class="header-left">
-
-            <!-- <h1>Recife</h1> -->
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    <div class="tudo">
+        <div class="cabecalho">
+            <img src="./assets/img/icone6.jpg.png" alt="" width="5%">
+            <div class="titulo">
             </div>
 
-            <div class="btn-nav-white">
-                <a href="conteudo.html">
-                    <h3>Lugares</h3>
-                </a>
-            </div>
+            <div class="navegacao">
+                <ul>
+                    <li><a href="conteudo.html">Lugares</a></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="mural.html">Mural</a></li>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
             </div>
+            <style type="text/css">
+                a:link {
+                    color: #3166b5;
+                    text-decoration: none;
+                }
 
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+                a:visited {
+                    color: #3166b5;
+                    text-decoration: none;
+                }
 
+                a:hover {
+                    color: #ffffff;
+                    text-decoration: none;
+                }
+
+                a:active {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+            </style>
+            </ul>
         </div>
-
         <div class="dash-right">
 
             <div class="avisos">
@@ -79,24 +86,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <!-- MODAL -->
-            <!-- <div id="div_modal" class="div-modal">
-                <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
-                </div>
-                <div id="modal_container" class="modal-container">
-                    <button class="btn-fechar-modal" onclick="fecharModal()">X</button>
-                </div>
-            </div> -->
-
-            <!-- AGUARDAR -->
-            <!-- <div id="div_aguardar" class="div-aguardar">
-                <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
-            </div>  -->
-
         </div>
     </div>
 </body>

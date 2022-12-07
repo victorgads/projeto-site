@@ -1,0 +1,13 @@
+.cabecalho {
+    padding: 1%;
+    background-color: #dfe2e9df;
+    border-bottom: px solid #3166b5;
+    overflow: hidden;
+    z-index: 10;
+    opacity: 0.9;
+    width: 100%; 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
